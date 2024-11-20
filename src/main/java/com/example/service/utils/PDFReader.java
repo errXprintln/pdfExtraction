@@ -19,13 +19,13 @@ public class PDFReader extends PDFTextStripper {
   }
 
   @Override
-  protected void writeString(String text, List<TextPosition> textPositions) throws IOException {
+  protected void writeString(String text, List<TextPosition> textPositions) {
     if (text.contains(endPattern)) {
       withinRange = false;
     }
 
     if (withinRange && foundStart) {
-      extractedText.append(text);
+      extractedText.append(text.replace("  ", "\n"));
     }
 
     if (text.contains(startPattern)) {
